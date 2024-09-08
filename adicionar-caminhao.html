@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Caminhão</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Adicionar Caminhão</h1>
+
+        <form id="truckForm">
+            <!-- Bloco principal do caminhão -->
+            <div class="form-group">
+                <label for="truckPlate">Placa do Caminhão</label>
+                <input type="text" class="form-control" id="truckPlate" placeholder="Informe a placa">
+            </div>
+            <div class="form-group">
+                <label for="taraWeight">TARA (Peso do Caminhão Vazio)</label>
+                <input type="text" class="form-control" id="taraWeight" placeholder="Peso vazio">
+            </div>
+            <div class="form-group">
+                <label for="grossWeight">PESO BRUTO TOTAL</label>
+                <input type="text" class="form-control" id="grossWeight" placeholder="Peso carregado">
+            </div>
+            <div class="form-group">
+                <label for="headsCount">Quantidade de Cabeças</label>
+                <input type="number" class="form-control" id="headsCount" placeholder="Número de cabeças">
+            </div>
+
+            <!-- Linha horizontal para separação visual -->
+            <hr class="my-4">
+
+            <!-- Bloco de Porcentagem de Desconto e Valor da Arroba -->
+            <div class="form-group">
+                <label for="discountPercentage">PORCENTAGEM DESCONTO (%)</label>
+                <input type="number" class="form-control" id="discountPercentage" value="53">
+            </div>
+            <div class="form-group">
+                <label for="arrobaValue">VALOR ARROBA (R$)</label>
+                <input type="text" class="form-control" id="arrobaValue" placeholder="Informe o valor da arroba">
+            </div>
+
+            <!-- Botão de calcular -->
+            <button type="button" class="btn btn-primary" id="calculateButton">Calcular</button>
+        </form>
+
+        <hr>
+
+        <!-- Resultados -->
+        <div id="results" class="mt-3">
+            <p><strong>PESO GADO (kg): </strong> <span id="cattleWeight"></span></p>
+            <p><strong>MÉDIA DE PESO (unidade): </strong> <span id="averageWeight"></span></p>
+            <p><strong>MÉDIA ARROBAS (unidade): </strong> <span id="averageArrobas"></span></p>
+            <p><strong>TOTAL ARROBAS: </strong> <span id="totalArrobas"></span></p>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="adicionar-venda.html" class="btn btn-secondary">Voltar para Venda</a>
+        </div>
+    </div>
+
+    <!-- Incluindo o script aqui, ao final do body -->
+    <script src="js/scripts.js"></script>
+</body>
+</html>

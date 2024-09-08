@@ -1,0 +1,37 @@
+body {
+    background-color: #f8f9fa;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+hr.my-4 {
+    border-top: 1px solid #ccc;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#results, #financialResults {
+    display: none;
+}
+
+#results p, #financialResults p {
+    font-size: 16px;
+}
+
+#results {
+    display: none;
+}
+
+#results p {
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+}
