@@ -34,9 +34,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 const saleItem = document.createElement('li');
                 saleItem.classList.add('list-group-item');
                 saleItem.innerHTML = `
-                    <a href="resumo-da-venda.html?saleId=${index}">
-                        ${sale.name} (${sale.date})
-                    </a>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title text-highlight">${sale.name}</h5>
+                            <p class="card-text text-muted">${sale.date}</p>
+                            <a href="resumo-da-venda.html?saleId=${index}" class="btn btn-primary">Ver Resumo</a>
+                        </div>
+                    </div>
                 `;
                 salesContainer.appendChild(saleItem);
             });
@@ -120,25 +124,25 @@ document.addEventListener('DOMContentLoaded', function () {
         const funruralDiscount = totalValue * 0.015;
         const netValue = totalValue - funruralDiscount;
 
-         // Exibir resumo da venda com formatação
-         saleSummaryDiv.innerHTML = `
-         <p id="saleName">${sale.name}</p>
-         <div class="summary-item">
-             <span>Total de Peso (kg):</span> ${formatForDisplay(totalWeight, 'weight')}
-         </div>
-         <div class="summary-item">
-             <span>Total de Arrobas:</span> ${formatForDisplay(totalArrobas, 'arrobas')}
-         </div>
-         <div class="summary-item">
-             <span>Desconto FUNRURAL (1,5%):</span> ${formatForDisplay(funruralDiscount, 'currency')}
-         </div>
-         <div class="summary-item">
-             <span id="valorBruto">Valor Bruto:</span> ${formatForDisplay(totalValue, 'currency')}
-         </div>
-         <div class="summary-item" id="valorLiquido">
-             <span>Valor Líquido:</span> ${formatForDisplay(netValue, 'currency')}
-         </div>
-     `;
+        // Exibir resumo da venda com formatação
+        saleSummaryDiv.innerHTML = `
+            <p id="saleName">${sale.name}</p>
+            <div class="summary-item">
+                <span>Total de Peso (kg):</span> ${formatForDisplay(totalWeight, 'weight')}
+            </div>
+            <div class="summary-item">
+                <span>Total de Arrobas:</span> ${formatForDisplay(totalArrobas, 'arrobas')}
+            </div>
+            <div class="summary-item">
+                <span>Desconto FUNRURAL (1,5%):</span> ${formatForDisplay(funruralDiscount, 'currency')}
+            </div>
+            <div class="summary-item">
+                <span id="valorBruto">Valor Bruto:</span> ${formatForDisplay(totalValue, 'currency')}
+            </div>
+            <div class="summary-item" id="valorLiquido">
+                <span>Valor Líquido:</span> ${formatForDisplay(netValue, 'currency')}
+            </div>
+        `;
 
         // Botão para adicionar caminhão
         if (addTruckButton) {

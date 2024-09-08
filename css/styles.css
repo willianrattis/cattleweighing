@@ -1,3 +1,4 @@
+/* === Body and Typography === */
 body {
     background-color: #f8f9fa;
 }
@@ -6,16 +7,32 @@ h1, h2 {
     color: #333;
 }
 
+/* Modal */
 .modal-body {
     padding: 20px;
 }
 
+/* Headings */
+h5.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Paragraphs */
+p.card-text {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* Horizontal Rule Styling */
 hr.my-4 {
     border-top: 1px solid #ccc;
     margin-top: 30px;
     margin-bottom: 30px;
 }
 
+/* === Results Section === */
 #results, #financialResults {
     display: none;
 }
@@ -24,17 +41,15 @@ hr.my-4 {
     font-size: 16px;
 }
 
-#results {
-    display: none;
-}
-
 #results p {
     font-size: 16px;
 }
 
+/* === Buttons === */
 button {
     width: 100%;
 }
+/* === Cards Styling === */
 .card {
     transition: transform 0.3s ease-in-out;
 }
@@ -48,80 +63,122 @@ button {
     font-size: 1.25rem;
 }
 
-.btn-warning {
-    background-color: #ffc107;
-    border: none;
-}
-
-.btn-warning:hover {
-    background-color: #e0a800;
-}
-
+/* === Primary Button (Green) === */
 .btn-primary {
-    background-color: #007bff;
+    background-color: rgb(0, 94, 44);
+    /* Cor verde */
     border: none;
+    color: white !important;
+        /* Texto branco forçado */
+        padding: 10px 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 5px;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: rgb(236, 214, 46);
+    /* Amarelo no hover */
+    color: rgb(0, 94, 44) !important;
+    /* Texto verde forçado */
 }
 
-#saleSummary {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
+/* === Warning Button (Amarelo) === */
+.btn-warning {
+    background-color: rgb(236, 214, 46);
+    /* Cor Amarela */
+    border: none;
+    color: white;
+        /* Texto branco */
 }
 
-#addTruckButton {
-    margin-bottom: 100px;
+.btn-warning:hover {
+    background-color: rgba(236, 214, 46, 0.8);
+    /* Amarelo escuro no hover */
+    color: rgb(0, 94, 44);
+    /* Texto verde no hover */
 }
 
-#saleName {
-    font-size: 1.25rem;
-    /* Diminuir o nome da venda */
-    color: #6c757d;
-    /* Cor mais discreta */
-    margin-bottom: 15px;
-}
-
+/* === Sale Summary Section === */
 #saleSummary {
     background-color: #f8f9fa;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Adiciona uma sombra suave */
-    margin-bottom: 30px;
+        /* Sombra suave */
+        margin-bottom: 30px;
 }
 
+#saleName {
+    font-size: 1.25rem;
+    color: #6c757d;
+        /* Cor discreta */
+    margin-bottom: 15px;
+}
+
+/* === Summary Items === */
 .summary-item {
     font-size: 1.2rem;
     padding: 10px 0;
     border-bottom: 1px solid #dee2e6;
-    /* Linha separadora entre itens */
+        /* Linha separadora */
 }
 
 .summary-item:last-child {
     border-bottom: none;
-    /* Remove a linha do último item */
+        /* Remove a linha do último item */
 }
 
 .summary-item span {
     font-weight: bold;
 }
 
+/* === Financial Values Styling === */
 #valorLiquido {
-    color: #28a745;
-    /* Cor verde para o valor líquido */
+    color: rgb(0, 94, 44);
+        /* Cor verde para valor líquido */
     font-weight: bold;
 }
 
 #valorBruto,
 #funrural {
     color: #333;
-    /* Cor escura para os valores brutos e FUNRURAL */
+        /* Cor escura para os valores brutos e FUNRURAL */
 }
 
+/* === Add Truck Button Spacing === */
 #addTruckButton {
     margin-bottom: 30px;
-    /* Adiciona espaço extra ao botão */
+}
+
+/* === Cards and Sales Section === */
+#salesContainer .list-group-item {
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#salesContainer .list-group-item a {
+    color: rgb(0, 94, 44);
+    /* Links com cor verde */
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#salesContainer .list-group-item a:hover {
+    text-decoration: underline;
+}
+
+/* === Footer Button === */
+#addTruckButton {
+    margin-bottom: 100px;
+}
+
+/* Adjust spacing between sections */
+.container {
+    padding-top: 20px;
+    padding-bottom: 40px;
 }
