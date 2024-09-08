@@ -182,3 +182,12 @@ button {
     padding-top: 20px;
     padding-bottom: 40px;
 }
+input#searchInput {
+    height: 46px;
+    padding: 10px;
+}
+
+button#sortByDateBtn {
+    height: 46px;
+    padding: 10px 20px;
+}

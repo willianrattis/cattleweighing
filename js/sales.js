@@ -212,3 +212,77 @@ function editTruck(truckIndex) {
     // Recarregar a página de adicionar caminhão para edição
     window.location.href = `adicionar-caminhao.html?saleId=${saleId}&truckId=${truckIndex}`;
 }
+
+// Função para converter a data no formato DD-MMM-YYYY para YYYY-MM-DD
+const convertDate = (dateStr) => {
+    const [day, monthStr, year] = dateStr.split('-');
+    const months = {
+        'JAN': '01', 'FEV': '02', 'MAR': '03', 'ABR': '04',
+        'MAI': '05', 'JUN': '06', 'JUL': '07', 'AGO': '08',
+        'SET': '09', 'OUT': '10', 'NOV': '11', 'DEZ': '12'
+    };
+    const month = months[monthStr.toUpperCase()];
+    return `${year}-${month}-${day}`;
+};
+
+// Gerenciar a exibição e ordenação
+document.addEventListener('DOMContentLoaded', function () {
+    const sales = JSON.parse(localStorage.getItem('sales')) || [];
+    let isDateAscending = true;
+
+    const salesContainer = document.getElementById('salesContainer');
+    const searchInput = document.getElementById('searchInput');
+    const sortByDateBtn = document.getElementById('sortByDateBtn');
+
+    // Função para exibir as vendas
+    const displaySales = (salesToDisplay) => {
+        salesContainer.innerHTML = '';
+        if (salesToDisplay.length === 0) {
+            salesContainer.innerHTML = '<li class="list-group-item">Nenhuma venda encontrada</li>';
+        } else {
+            salesToDisplay.forEach((sale, index) => {
+                const saleItem = document.createElement('li');
+                saleItem.classList.add('list-group-item');
+                saleItem.innerHTML = `
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">${sale.name}</h5>
+                            <p class="card-text text-muted">${sale.date}</p>
+                            <a href="resumo-da-venda.html?saleId=${index}" class="btn btn-primary">Ver Resumo</a>
+                        </div>
+                    </div>
+                `;
+                salesContainer.appendChild(saleItem);
+            });
+        }
+    };
+
+    // Filtrar as vendas conforme o usuário digita
+    searchInput.addEventListener('input', function () {
+        const searchTerm = searchInput.value.toLowerCase();
+        const filteredSales = sales.filter(sale => sale.name.toLowerCase().includes(searchTerm));
+        displaySales(filteredSales);
+    });
+
+    // Ordenar as vendas por data
+    sortByDateBtn.addEventListener('click', function () {
+        sales.sort((a, b) => {
+            const dateA = new Date(convertDate(a.date));
+            const dateB = new Date(convertDate(b.date));
+
+            if (isDateAscending) {
+                return dateA - dateB;
+            } else {
+                return dateB - dateA;
+            }
+        });
+
+        // Alternar a ordem da próxima ordenação
+        isDateAscending = !isDateAscending;
+
+        displaySales(sales);
+    });
+
+    // Exibir as vendas inicialmente
+    displaySales(sales);
+});
