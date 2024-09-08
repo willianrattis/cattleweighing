@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const saleId = urlParams.get('saleId');
     const sales = JSON.parse(localStorage.getItem('sales')) || [];
-    
+
     const salesContainer = document.getElementById('salesContainer');
     const saveSaleButton = document.getElementById('saveSaleButton');
     const saleSummaryDiv = document.getElementById('saleSummary');
@@ -83,12 +83,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 totalValue += truck.totalValue;
             });
 
+            const funruralDiscount = totalValue * 0.015;
+            const netValue = totalValue - funruralDiscount;
+
             saleSummaryDiv.innerHTML = `
                 <h2>${sale.name}</h2>
-                <p><strong>Data da Venda:</strong> ${sale.date}</p>
                 <p><strong>Total de Peso (kg):</strong> ${totalWeight.toFixed(2)}</p>
                 <p><strong>Total de Arrobas:</strong> ${totalArrobas.toFixed(2)}</p>
-                <p><strong>Valor Total:</strong> R$ ${totalValue.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                <p><strong>Desconto FUNRURAL (1,5%):</strong> R$ ${funruralDiscount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                <p><strong>Valor Bruto:</strong> R$ ${totalValue.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                <p><strong>Valor Líquido:</strong> R$ ${netValue.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
             `;
         } else {
             saleSummaryDiv.innerHTML = `<p>Nenhum caminhão adicionado ainda.</p>`;

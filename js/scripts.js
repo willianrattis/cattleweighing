@@ -61,11 +61,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const taraWeight = parseFloat(unformatNumber(taraWeightInput.value));
             const grossWeight = parseFloat(unformatNumber(grossWeightInput.value));
             const headsCount = parseInt(headsCountInput.value);
-            const discountPercentage = parseFloat(discountPercentageInput.value);
             const arrobaValue = unformatCurrency(arrobaValueInput.value);
 
             // Verificar se todos os valores são válidos
-            if (!isNaN(taraWeight) && taraWeight > 0 && !isNaN(grossWeight) && grossWeight > 0 && !isNaN(headsCount) && headsCount > 0 && !isNaN(discountPercentage) && !isNaN(arrobaValue) && arrobaValue > 0) {
+            if (!isNaN(taraWeight) && taraWeight > 0 && !isNaN(grossWeight) && grossWeight > 0 && !isNaN(headsCount) && headsCount > 0 && !isNaN(arrobaValue) && arrobaValue > 0) {
                 // Cálculos
                 const cattleWeight = grossWeight - taraWeight;
                 const averageWeight = cattleWeight / headsCount;
@@ -94,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         cattleWeight,
                         headsCount,
                         totalArrobas: totalArrobasCurrent,
-                        totalValue: netValue
+                        totalValue: totalValue  // Armazenar o valor bruto
                     };
 
                     sales[saleId].trucks.push(newTruck);
