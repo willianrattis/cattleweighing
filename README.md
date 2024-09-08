@@ -40,3 +40,7 @@ Este é um sistema para o gerenciamento de vendas de gado, permitindo adicionar,
 ├── pesagem-gado.html         # Página principal com a lista de vendas
 ├── resumo-da-venda.html      # Página de resumo de uma venda específica
 └── README.md                 # Este arquivo
+
+---
+
+ Desenvolvido por [willianrattis](https://github.com/willianrattis).
