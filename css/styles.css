@@ -35,3 +35,93 @@ hr.my-4 {
 button {
     width: 100%;
 }
+.card {
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+#saleSummary {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#addTruckButton {
+    margin-bottom: 100px;
+}
+
+#saleName {
+    font-size: 1.25rem;
+    /* Diminuir o nome da venda */
+    color: #6c757d;
+    /* Cor mais discreta */
+    margin-bottom: 15px;
+}
+
+#saleSummary {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Adiciona uma sombra suave */
+    margin-bottom: 30px;
+}
+
+.summary-item {
+    font-size: 1.2rem;
+    padding: 10px 0;
+    border-bottom: 1px solid #dee2e6;
+    /* Linha separadora entre itens */
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+    /* Remove a linha do último item */
+}
+
+.summary-item span {
+    font-weight: bold;
+}
+
+#valorLiquido {
+    color: #28a745;
+    /* Cor verde para o valor líquido */
+    font-weight: bold;
+}
+
+#valorBruto,
+#funrural {
+    color: #333;
+    /* Cor escura para os valores brutos e FUNRURAL */
+}
+
+#addTruckButton {
+    margin-bottom: 30px;
+    /* Adiciona espaço extra ao botão */
+}
