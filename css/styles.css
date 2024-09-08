@@ -191,3 +191,36 @@ button#sortByDateBtn {
     height: 46px;
     padding: 10px 20px;
 }
+/* Estilo do container de ações */
+.actions {
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo para o ícone de deletar */
+.icon-delete {
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: red;
+}
+
+/* Estilo para o botão "Ver Resumo" */
+.btn-primary {
+    margin-right: 10px;
+    /* Espaçamento entre o botão e o ícone */
+}
+
+/* Estilo do container de ações */
+.icon-delete-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* Estilo para o ícone de deletar */
+.icon-delete {
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: red;
+    margin-left: 20px;
+}

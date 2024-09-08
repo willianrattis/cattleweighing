@@ -35,15 +35,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 saleItem.classList.add('list-group-item');
                 saleItem.innerHTML = `
                     <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title text-highlight">${sale.name}</h5>
-                            <p class="card-text text-muted">${sale.date}</p>
-                            <a href="resumo-da-venda.html?saleId=${index}" class="btn btn-primary">Ver Resumo</a>
+                            <div class="card-body">
+                                <div>
+                                    <h5 class="card-title">${sale.name}</h5>
+                                    <p class="card-text text-muted">${sale.date}</p>
+                                    <a href="resumo-da-venda.html?saleId=${index}" class="btn btn-primary mt-2">Ver Resumo</a>
+                                </div>
+                                <div class="icon-delete-container">
+                                    <i class="fas fa-trash-alt text-danger icon-delete" style="cursor: pointer;" onclick="deleteSale(${index})"></i>
+                                </div>
+                            </div>
                         </div>
-                    </div>
                 `;
                 salesContainer.appendChild(saleItem);
             });
+        }
+    };
+
+    // Função para excluir uma venda
+    window.deleteSale = (index) => {
+        const confirmation = confirm('Tem certeza que deseja excluir esta venda?');
+        if (confirmation) {
+            sales.splice(index, 1);
+            localStorage.setItem('sales', JSON.stringify(sales));
+            loadSales(); // Recarregar a lista
         }
     };
 
@@ -245,15 +260,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 saleItem.classList.add('list-group-item');
                 saleItem.innerHTML = `
                     <div class="card mb-3">
-                        <div class="card-body">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
                             <h5 class="card-title">${sale.name}</h5>
                             <p class="card-text text-muted">${sale.date}</p>
-                            <a href="resumo-da-venda.html?saleId=${index}" class="btn btn-primary">Ver Resumo</a>
+                        </div>
+                        <div class="actions d-flex align-items-center">
+                            <a href="resumo-da-venda.html?saleId=${index}" class="btn btn-primary mr-2">Ver Resumo</a>
+                            <i class="fas fa-trash-alt text-danger icon-delete" style="cursor: pointer;" onclick="deleteSale(${index})"></i>
                         </div>
                     </div>
+                </div>
                 `;
                 salesContainer.appendChild(saleItem);
             });
+        }
+    };
+
+    // Função para excluir uma venda
+    window.deleteSale = (index) => {
+        const confirmation = confirm('Tem certeza que deseja excluir esta venda?');
+        if (confirmation) {
+            sales.splice(index, 1);
+            localStorage.setItem('sales', JSON.stringify(sales));
+            displaySales(sales); // Recarregar a lista
         }
     };
 
