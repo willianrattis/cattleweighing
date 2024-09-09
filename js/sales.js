@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 truckItem.classList.add('card', 'mb-3');
                 truckItem.innerHTML = `
                     <div class="card-body">
-                        <h5 class="card-title">Caminhão: ${truck.plate}</h5>
+                        <h5 class="card-title">Caminhão: <span class="truck-name">${truck.plate}</span></h5>
                         <p class="card-text">
                             TARA: ${formatForDisplay(truck.taraWeight, 'weight')} kg<br>
                             Peso Bruto: ${formatForDisplay(truck.grossWeight, 'weight')} kg<br>
