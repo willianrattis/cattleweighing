@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const taraWeightInput = document.getElementById('taraWeight');
     const grossWeightInput = document.getElementById('grossWeight');
     const headsCountInput = document.getElementById('headsCount');
-    const discountPercentageInput = document.getElementById('discountPercentage');
     const arrobaValueInput = document.getElementById('arrobaValue');
     const calculateButton = document.getElementById('calculateButton');
     const resultsDiv = document.getElementById('results');
@@ -38,16 +37,15 @@ document.addEventListener('DOMContentLoaded', function() {
         truckPlateInput.value = truck.plate;
         taraWeightInput.value = formatNumberNoDecimals(truck.taraWeight); // Sem casas decimais
         grossWeightInput.value = formatNumberNoDecimals(truck.grossWeight); // Sem casas decimais
-        headsCountInput.value = truck.headsCount;
-        discountPercentageInput.value = '53'; // Padrão para o desconto de 53%
-        arrobaValueInput.value = formatCurrency(truck.arrobaValue || 0); // Ajuste para valor da arroba
+        headsCountInput.value = truck.headsCount || 0; // Definir como 0 se vazio
+        arrobaValueInput.value = formatCurrency(truck.arrobaValue || 0); // Ajustar para valor da arroba com formatação
     }
 
     // Função de formatação para campo TARA (sem casas decimais)
     taraWeightInput.addEventListener('input', function(event) {
         let value = unformatNumber(event.target.value);
         if (!isNaN(value)) {
-            taraWeightInput.value = formatNumberNoDecimals(value); // Sem casas decimais
+            taraWeightInput.value = formatNumberNoDecimals(value); // Manter a formatação de milhar
         }
     });
 
@@ -55,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     grossWeightInput.addEventListener('input', function(event) {
         let value = unformatNumber(event.target.value);
         if (!isNaN(value)) {
-            grossWeightInput.value = formatNumberNoDecimals(value); // Sem casas decimais
+            grossWeightInput.value = formatNumberNoDecimals(value); // Manter a formatação de milhar
         }
     });
 
@@ -63,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     arrobaValueInput.addEventListener('input', function(event) {
         let value = arrobaValueInput.value.replace(/\D/g, '');
         if (value.length > 0) {
-            arrobaValueInput.value = formatCurrency(parseFloat(value / 100));
+            arrobaValueInput.value = formatCurrency(parseFloat(value / 100)); // Manter a formatação de moeda
         }
     });
 
@@ -72,12 +70,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const plate = truckPlateInput.value.trim();
         const taraWeight = unformatNumber(taraWeightInput.value);
         const grossWeight = unformatNumber(grossWeightInput.value);
-        const headsCount = parseInt(headsCountInput.value);
-        const arrobaValue = unformatCurrency(arrobaValueInput.value);
+        const headsCount = parseInt(headsCountInput.value) || 0; // Definir como 0 se vazio
+        const arrobaValue = unformatCurrency(arrobaValueInput.value) || 0; // Definir como 0 se vazio
 
-        if (plate && !isNaN(taraWeight) && !isNaN(grossWeight) && !isNaN(headsCount)) {
+        // Verificar se os valores básicos estão preenchidos
+        if (plate && !isNaN(taraWeight)) {
             const cattleWeight = grossWeight - taraWeight;
-            const averageWeight = cattleWeight / headsCount;
+            const averageWeight = headsCount > 0 ? cattleWeight / headsCount : 0; // Verifica se headsCount é maior que 0
             const averageArrobas = averageWeight * 0.53 / 15;
             const totalArrobas = headsCount * averageArrobas;
             const totalValue = totalArrobas * arrobaValue;
@@ -123,18 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Redirecionar para o resumo da venda
             window.location.href = `resumo-da-venda.html?saleId=${saleId}`;
         } else {
-            alert('Por favor, preencha todos os campos corretamente.');
+            alert('Por favor, preencha os campos obrigatórios.');
         }
     });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const saleId = urlParams.get('saleId');
-
-    // Definir corretamente o link para o botão de voltar
-    const backToSummaryButton = document.getElementById('backToSummary');
-    if (backToSummaryButton) {
-        backToSummaryButton.href = `resumo-da-venda.html?saleId=${saleId}`;
-    }
 });
