@@ -11,8 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const saveTruckButton = document.getElementById('saveTruckButton');
     const trucksListDiv = document.getElementById('trucksList');
 
-    // Função de formatação para exibição visual
+    // Função de formatação para exibição visual, agora com tratamento para valores nulos ou 0
     const formatForDisplay = (num, type = 'number') => {
+        if (!num || isNaN(num)) num = 0; // Tratar valores null, undefined ou NaN como 0
         switch (type) {
             case 'currency':
                 return num.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -35,17 +36,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 saleItem.classList.add('list-group-item');
                 saleItem.innerHTML = `
                     <div class="card mb-3">
-                            <div class="card-body">
-                                <div>
-                                    <h5 class="card-title">${sale.name}</h5>
-                                    <p class="card-text text-muted">${sale.date}</p>
-                                    <a href="resumo-da-venda.html?saleId=${index}" class="btn btn-primary mt-2">Ver Resumo</a>
-                                </div>
-                                <div class="icon-delete-container">
-                                    <i class="fas fa-trash-alt text-danger icon-delete" style="cursor: pointer;" onclick="deleteSale(${index})"></i>
-                                </div>
+                        <div class="card-body">
+                            <div>
+                                <h5 class="card-title">${sale.name}</h5>
+                                <p class="card-text text-muted">${sale.date}</p>
+                                <a href="resumo-da-venda.html?saleId=${index}" class="btn btn-primary mt-2">Ver Resumo</a>
+                            </div>
+                            <div class="icon-delete-container">
+                                <i class="fas fa-trash-alt text-danger icon-delete" style="cursor: pointer;" onclick="deleteSale(${index})"></i>
                             </div>
                         </div>
+                    </div>
                 `;
                 salesContainer.appendChild(saleItem);
             });
@@ -112,16 +113,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (sale.trucks && sale.trucks.length > 0) {
             sale.trucks.forEach((truck, index) => {
-                totalWeight += truck.cattleWeight;
-                totalArrobas += truck.totalArrobas;
-                totalValue += truck.totalValue;
+                totalWeight += truck.cattleWeight || 0;
+                totalArrobas += truck.totalArrobas || 0;
+                totalValue += truck.totalValue || 0;
 
                 // Exibir os dados de cada caminhão com formatação
                 const truckItem = document.createElement('div');
                 truckItem.classList.add('card', 'mb-3');
                 truckItem.innerHTML = `
                     <div class="card-body">
-                        <h5 class="card-title">Caminhão: ${truck.plate}</h5>
+                        <h5 class="card-title">Caminhão: <span class="truck-name">${truck.plate}</span></h5>
                         <p class="card-text">
                             TARA: ${formatForDisplay(truck.taraWeight, 'weight')} kg<br>
                             Peso Bruto: ${formatForDisplay(truck.grossWeight, 'weight')} kg<br>
@@ -145,14 +146,14 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="summary-item">
                 <span>Total de Peso (kg):</span> ${formatForDisplay(totalWeight, 'weight')}
             </div>
-            <div class="summary-item">
+            <div class="summary-item arrobas-to-valor">
                 <span>Total de Arrobas:</span> ${formatForDisplay(totalArrobas, 'arrobas')}
             </div>
             <div class="summary-item">
-                <span>Desconto FUNRURAL (1,5%):</span> ${formatForDisplay(funruralDiscount, 'currency')}
+                <span id="valorBruto">Valor Bruto:</span> ${formatForDisplay(totalValue, 'currency')}
             </div>
             <div class="summary-item">
-                <span id="valorBruto">Valor Bruto:</span> ${formatForDisplay(totalValue, 'currency')}
+                <span>Desconto FUNRURAL (1,5%):</span> ${formatForDisplay(funruralDiscount, 'currency')}
             </div>
             <div class="summary-item" id="valorLiquido">
                 <span>Valor Líquido:</span> ${formatForDisplay(netValue, 'currency')}
@@ -249,33 +250,33 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('searchInput');
     const sortByDateBtn = document.getElementById('sortByDateBtn');
 
-    // Função para exibir as vendas
-    const displaySales = (salesToDisplay) => {
-        salesContainer.innerHTML = '';
-        if (salesToDisplay.length === 0) {
-            salesContainer.innerHTML = '<li class="list-group-item">Nenhuma venda encontrada</li>';
-        } else {
-            salesToDisplay.forEach((sale, index) => {
-                const saleItem = document.createElement('li');
-                saleItem.classList.add('list-group-item');
-                saleItem.innerHTML = `
-                    <div class="card mb-3">
+// Função para exibir as vendas
+const displaySales = (salesToDisplay) => {
+    salesContainer.innerHTML = '';
+    if (salesToDisplay.length === 0) {
+        salesContainer.innerHTML = '<li class="list-group-item">Nenhuma venda encontrada</li>';
+    } else {
+        salesToDisplay.forEach((sale, index) => {
+            const saleItem = document.createElement('li');
+            saleItem.classList.add('list-group-item');
+            saleItem.innerHTML = `
+                <div class="card mb-3">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
                             <h5 class="card-title">${sale.name}</h5>
                             <p class="card-text text-muted">${sale.date}</p>
                         </div>
                         <div class="actions d-flex align-items-center">
-                            <a href="resumo-da-venda.html?saleId=${index}" class="btn btn-primary mr-2">Ver Resumo</a>
+                            <a href="resumo-da-venda.html?saleId=${index}" class="btn btn-primary">Ver Resumo</a>
                             <i class="fas fa-trash-alt text-danger icon-delete" style="cursor: pointer;" onclick="deleteSale(${index})"></i>
                         </div>
                     </div>
                 </div>
-                `;
-                salesContainer.appendChild(saleItem);
-            });
-        }
-    };
+            `;
+            salesContainer.appendChild(saleItem);
+        });
+    }
+};
 
     // Função para excluir uma venda
     window.deleteSale = (index) => {
