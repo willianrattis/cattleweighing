@@ -250,33 +250,33 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('searchInput');
     const sortByDateBtn = document.getElementById('sortByDateBtn');
 
-    // Função para exibir as vendas
-    const displaySales = (salesToDisplay) => {
-        salesContainer.innerHTML = '';
-        if (salesToDisplay.length === 0) {
-            salesContainer.innerHTML = '<li class="list-group-item">Nenhuma venda encontrada</li>';
-        } else {
-            salesToDisplay.forEach((sale, index) => {
-                const saleItem = document.createElement('li');
-                saleItem.classList.add('list-group-item');
-                saleItem.innerHTML = `
-                    <div class="card mb-3">
+// Função para exibir as vendas
+const displaySales = (salesToDisplay) => {
+    salesContainer.innerHTML = '';
+    if (salesToDisplay.length === 0) {
+        salesContainer.innerHTML = '<li class="list-group-item">Nenhuma venda encontrada</li>';
+    } else {
+        salesToDisplay.forEach((sale, index) => {
+            const saleItem = document.createElement('li');
+            saleItem.classList.add('list-group-item');
+            saleItem.innerHTML = `
+                <div class="card mb-3">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
                             <h5 class="card-title">${sale.name}</h5>
                             <p class="card-text text-muted">${sale.date}</p>
                         </div>
                         <div class="actions d-flex align-items-center">
-                            <a href="resumo-da-venda.html?saleId=${index}" class="btn btn-primary mr-2">Ver Resumo</a>
+                            <a href="resumo-da-venda.html?saleId=${index}" class="btn btn-primary">Ver Resumo</a>
                             <i class="fas fa-trash-alt text-danger icon-delete" style="cursor: pointer;" onclick="deleteSale(${index})"></i>
                         </div>
                     </div>
                 </div>
-                `;
-                salesContainer.appendChild(saleItem);
-            });
-        }
-    };
+            `;
+            salesContainer.appendChild(saleItem);
+        });
+    }
+};
 
     // Função para excluir uma venda
     window.deleteSale = (index) => {

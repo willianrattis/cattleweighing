@@ -41,14 +41,11 @@ hr.my-4 {
     font-size: 16px;
 }
 
-#results p {
-    font-size: 16px;
-}
-
 /* === Buttons === */
 button {
     width: 100%;
 }
+
 /* === Cards Styling === */
 .card {
     transition: transform 0.3s ease-in-out;
@@ -66,37 +63,31 @@ button {
 /* === Primary Button (Green) === */
 .btn-primary {
     background-color: rgb(0, 94, 44);
-    /* Cor verde */
     border: none;
     color: white !important;
-        /* Texto branco forçado */
-        padding: 10px 20px;
+    padding: 10px 20px;
         font-size: 1rem;
         font-weight: bold;
         border-radius: 5px;
+    margin-top: 10px;
+        /* Espaço entre a data e o botão */
 }
 
 .btn-primary:hover {
     background-color: rgb(236, 214, 46);
-    /* Amarelo no hover */
     color: rgb(0, 94, 44) !important;
-    /* Texto verde forçado */
 }
 
-/* === Warning Button (Amarelo) === */
+/* === Warning Button (Yellow) === */
 .btn-warning {
     background-color: rgb(236, 214, 46);
-    /* Cor Amarela */
     border: none;
     color: white;
-        /* Texto branco */
 }
 
 .btn-warning:hover {
     background-color: rgba(236, 214, 46, 0.8);
-    /* Amarelo escuro no hover */
     color: rgb(0, 94, 44);
-    /* Texto verde no hover */
 }
 
 /* === Sale Summary Section === */
@@ -105,14 +96,12 @@ button {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        /* Sombra suave */
-        margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 #saleName {
     font-size: 1.25rem;
     color: #6c757d;
-        /* Cor discreta */
     margin-bottom: 15px;
 }
 
@@ -121,12 +110,10 @@ button {
     font-size: 1.2rem;
     padding: 10px 0;
     border-bottom: 1px solid #dee2e6;
-        /* Linha separadora */
 }
 
 .summary-item:last-child {
     border-bottom: none;
-        /* Remove a linha do último item */
 }
 
 .summary-item span {
@@ -136,14 +123,12 @@ button {
 /* === Financial Values Styling === */
 #valorLiquido {
     color: rgb(0, 94, 44);
-        /* Cor verde para valor líquido */
     font-weight: bold;
 }
 
 #valorBruto,
 #funrural {
     color: #333;
-        /* Cor escura para os valores brutos e FUNRURAL */
 }
 
 /* === Add Truck Button Spacing === */
@@ -162,7 +147,6 @@ button {
 
 #salesContainer .list-group-item a {
     color: rgb(0, 94, 44);
-    /* Links com cor verde */
     font-size: 1.1rem;
     font-weight: bold;
     text-decoration: none;
@@ -172,58 +156,28 @@ button {
     text-decoration: underline;
 }
 
-/* === Footer Button === */
-#addTruckButton {
-    margin-bottom: 100px;
-}
-
-/* Adjust spacing between sections */
-.container {
-    padding-top: 20px;
-    padding-bottom: 40px;
-}
-input#searchInput {
-    height: 46px;
-    padding: 10px;
-}
-
-button#sortByDateBtn {
-    height: 46px;
-    padding: 10px 20px;
-}
-/* Estilo do container de ações */
-.actions {
+/* Ajuste para o container de ações (alinhamento do botão Ver Resumo e o ícone de deletar) */
+.list-group-item .actions {
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-/* Estilo para o ícone de deletar */
-.icon-delete {
+.list-group-item .btn-primary {
+    flex-grow: 0;
+    margin-left: 0;
+    margin-top: 10px;
+    /* Espaço entre a data e o botão */
+}
+
+.list-group-item .icon-delete {
+    margin-left: 15px;
+    color: red;
     cursor: pointer;
     font-size: 1.2rem;
-    color: red;
+    align-self: center;
 }
-
-/* Estilo para o botão "Ver Resumo" */
-.btn-primary {
-    margin-right: 10px;
-    /* Espaçamento entre o botão e o ícone */
-}
-
-/* Estilo do container de ações */
-.icon-delete-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-/* Estilo para o ícone de deletar */
-.icon-delete {
-    cursor: pointer;
-    font-size: 1.2rem;
-    color: red;
-    margin-left: 20px;
-}
+/* === Truck Plate === */
 #truckPlate {
     text-transform: uppercase;
 }
@@ -231,19 +185,83 @@ button#sortByDateBtn {
 #truckPlate::placeholder {
     text-transform: none;
 }
-/* === Summary Items === */
-.summary-item {
-    font-size: 1.2rem;
-    padding: 10px 0;
-    border-bottom: 2px solid #dee2e6;
-    /* Aumenta a espessura da linha */
-}
 
 /* === Linha entre Total de Arrobas e Valor Bruto === */
 .summary-item.arrobas-to-valor {
     border-bottom: 5px solid #dee2e6;
-    /* Linha mais grossa */
 }
+
 .truck-name {
     text-transform: uppercase;
+}
+/* === Navigation Icon === */
+.nav-link i {
+    font-size: 1.5rem;
+    margin-right: 5px;
+}
+
+/* Para telas menores que 770px */
+@media (max-width: 770px) {
+    .d-flex {
+        flex-direction: column;
+    }
+
+    .d-flex input,
+    .d-flex button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .d-flex button {
+        margin-left: 0;
+    }
+
+    /* Ajuste para o container de vendas */
+    #salesContainer .list-group-item {
+        padding: 10px;
+    }
+
+    .summary-item {
+        font-size: 1rem;
+        padding: 8px 0;
+    }
+
+    h1,
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h5.card-title {
+        font-size: 1.1rem;
+    }
+
+    .btn-primary,
+    .btn-warning {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    /* Ajuste do modal */
+    .modal-body {
+        padding: 15px;
+    }
+
+    /* Ajuste para o layout do botão e ícone de deletar em telas pequenas */
+    .actions {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .actions .btn-primary {
+        width: 70%;
+        margin-bottom: 10px;
+        margin-left: 0;
+    }
+
+    .actions .icon-delete {
+        align-self: center;
+        font-size: 1.5rem;
+        margin-left: 0;
+    }
 }
