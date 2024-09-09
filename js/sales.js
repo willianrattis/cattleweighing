@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="summary-item">
                 <span>Total de Peso (kg):</span> ${formatForDisplay(totalWeight, 'weight')}
             </div>
-            <div class="summary-item">
+            <div class="summary-item arrobas-to-valor">
                 <span>Total de Arrobas:</span> ${formatForDisplay(totalArrobas, 'arrobas')}
             </div>
             <div class="summary-item">

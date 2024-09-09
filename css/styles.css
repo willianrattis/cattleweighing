@@ -231,3 +231,16 @@ button#sortByDateBtn {
 #truckPlate::placeholder {
     text-transform: none;
 }
+/* === Summary Items === */
+.summary-item {
+    font-size: 1.2rem;
+    padding: 10px 0;
+    border-bottom: 2px solid #dee2e6;
+    /* Aumenta a espessura da linha */
+}
+
+/* === Linha entre Total de Arrobas e Valor Bruto === */
+.summary-item.arrobas-to-valor {
+    border-bottom: 5px solid #dee2e6;
+    /* Linha mais grossa */
+}
