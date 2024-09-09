@@ -224,3 +224,10 @@ button#sortByDateBtn {
     color: red;
     margin-left: 20px;
 }
+#truckPlate {
+    text-transform: uppercase;
+}
+
+#truckPlate::placeholder {
+    text-transform: none;
+}
