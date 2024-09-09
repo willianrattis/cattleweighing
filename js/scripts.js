@@ -125,4 +125,10 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Por favor, preencha os campos obrigatórios.');
         }
     });
+
+    // Definir corretamente o link para o botão de voltar
+    const backToSummaryButton = document.getElementById('backToSummary');
+    if (backToSummaryButton && saleId) {
+        backToSummaryButton.setAttribute('href', `resumo-da-venda.html?saleId=${saleId}`);
+    }
 });
