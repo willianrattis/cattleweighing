@@ -199,7 +199,6 @@ button {
     font-size: 1.5rem;
     margin-right: 5px;
 }
-
 /* Para telas menores que 770px */
 @media (max-width: 770px) {
     .d-flex {
