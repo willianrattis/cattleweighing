@@ -199,6 +199,25 @@ button {
     font-size: 1.5rem;
     margin-right: 5px;
 }
+#searchInput,
+#sortByDateBtn {
+    display: flex;
+    align-items: center;
+    /* Garante que o conteúdo interno fique centralizado */
+    height: 50px;
+    /* Mesma altura para ambos */
+}
+
+#searchInput {
+    margin-top: 10px;
+    padding: 0 15px;
+    /* Padding lateral */
+}
+
+#sortByDateBtn {
+    padding: 0 20px;
+    /* Ajuste de padding */
+}
 /* Para telas menores que 770px */
 @media (max-width: 770px) {
     .d-flex {
